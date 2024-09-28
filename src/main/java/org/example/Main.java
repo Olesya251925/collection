@@ -3,14 +3,19 @@ package org.example;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
         System.out.println("1 - Операции с массивом");
         System.out.println("2 - Генерация простых чисел");
+        System.out.println("3 - Операции с классом Human");
         System.out.println("Выберите задачу:");
         int choice = scanner.nextInt();
 
@@ -61,8 +66,42 @@ public class Main {
                 System.out.print(primes.get(i) + " ");
             }
             System.out.println();
+        } else if (choice == 3) {
+            // Третья задача: операции с классом Human
+            List<Human> humans = new ArrayList<>();
+            humans.add(new Human("Кириллова", "Олеся", 20));
+            humans.add(new Human("Когай", "Таисия", 19));
+            humans.add(new Human("Меристе", "Илья", 21));
+            humans.add(new Human("Волкова", "Елена", 22));
+
+            // a) HashSet
+            HashSet<Human> hashSet = new HashSet<>(humans);
+            System.out.println("HashSet содержимое:");
+            System.out.println(hashSet);
+
+            // b) LinkedHashSet
+            LinkedHashSet<Human> linkedHashSet = new LinkedHashSet<>(humans);
+            System.out.println("LinkedHashSet содержимое:");
+            System.out.println(linkedHashSet);
+
+            // c) TreeSet
+            TreeSet<Human> treeSet = new TreeSet<>(humans);
+            System.out.println("TreeSet содержимое:");
+            System.out.println(treeSet);
+
+            // d) TreeSet с компаратором
+            TreeSet<Human> treeSetWithComparator = new TreeSet<>(new HumanComparatorByLastName());
+            treeSetWithComparator.addAll(humans);
+            System.out.println("TreeSet с компаратором по фамилии:");
+            System.out.println(treeSetWithComparator);
+
+            // e) TreeSet с анонимным компаратором по возрасту
+            TreeSet<Human> treeSetWithAnonymousComparator = new TreeSet<>(Comparator.comparingInt(Human::getAge));
+            treeSetWithAnonymousComparator.addAll(humans);
+            System.out.println("TreeSet с анонимным компаратором по возрасту:");
+            System.out.println(treeSetWithAnonymousComparator);
         } else {
-            System.out.println("Неверный выбор. Пожалуйста, выберите 1 или 2.");
+            System.out.println("Неверный выбор. Пожалуйста, выберите 1, 2 или 3.");
         }
 
         scanner.close();
