@@ -1,13 +1,6 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.TreeSet;
-import java.util.Comparator;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +10,7 @@ public class Main {
         System.out.println("2 - Генерация простых чисел");
         System.out.println("3 - Операции с классом Human");
         System.out.println("4 - Подсчёт частоты слов");
+        System.out.println("5 - Замена ключей и значений в Map");
         System.out.println("Выберите задачу:");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -109,7 +103,15 @@ public class Main {
             WordFrequencyCounter counter = new WordFrequencyCounter();
             counter.countWords(inputText);
             System.out.println("Частота слов: " + counter.getWordCounts());
+        } else if (choice == 5) {
+            Map<Integer, String> originalMap = new HashMap<>();
+            originalMap.put(1, "One");
+            originalMap.put(2, "Two");
+            originalMap.put(3, "Three");
 
+            System.out.println("Исходная карта: " + originalMap);
+            Map<String, Integer> swappedMap = MapUtils.swapKeysAndValues(originalMap);
+            System.out.println("Поменянные местами ключи и значения: " + swappedMap);
         } else {
             System.out.println("Неверный выбор. Пожалуйста, выберите 1, 2 или 3.");
         }
