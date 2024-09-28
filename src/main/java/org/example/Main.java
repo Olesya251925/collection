@@ -16,8 +16,10 @@ public class Main {
         System.out.println("1 - Операции с массивом");
         System.out.println("2 - Генерация простых чисел");
         System.out.println("3 - Операции с классом Human");
+        System.out.println("4 - Подсчёт частоты слов");
         System.out.println("Выберите задачу:");
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         if (choice == 1) {
             // Первая задача: операции с массивом
@@ -100,6 +102,14 @@ public class Main {
             treeSetWithAnonymousComparator.addAll(humans);
             System.out.println("TreeSet с анонимным компаратором по возрасту:");
             System.out.println(treeSetWithAnonymousComparator);
+        } else if (choice == 4) {
+            // Четвёртая задача: подсчёт частоты слов
+            System.out.println("Введите строку:");
+            String inputText = scanner.nextLine();
+            WordFrequencyCounter counter = new WordFrequencyCounter();
+            counter.countWords(inputText);
+            System.out.println("Частота слов: " + counter.getWordCounts());
+
         } else {
             System.out.println("Неверный выбор. Пожалуйста, выберите 1, 2 или 3.");
         }
